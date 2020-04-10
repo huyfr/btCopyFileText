@@ -5,25 +5,14 @@ import java.io.IOException;
 
 public class TextFileCopy {
     public static void copyFile(File original, File clone) throws IOException {
-        FileReader fileReader = null;
-        FileWriter fileWriter = null;
-        try {
-            fileReader = new FileReader(original);
-            fileWriter = new FileWriter(clone);
+        FileReader fileReader = new FileReader(original);
+        FileWriter fileWriter = new FileWriter(clone);
 
-            int count = 0;
-            while ((count = fileReader.read()) != -1) {
-                fileWriter.write(count);
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-            if (fileWriter != null) {
-                fileWriter.close();
-            }
-            if (fileReader != null) {
-                fileReader.close();
-            }
+        int count;
+        while ((count = fileReader.read()) != -1) {
+            fileWriter.write(count);
         }
+        fileWriter.close();
+        fileReader.close();
     }
 }
